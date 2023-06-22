@@ -33,6 +33,7 @@ The following technologies are used in this project:
 
 - Java
 - Android SDK
+- PDF Libraries 
 
 ## Getting Started
 
