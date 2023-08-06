@@ -1,19 +1,21 @@
 /*
-JUnit test class named ExampleUnitTest. JUnit is a popular testing framework for Java that allows developers to write and execute unit tests to verify the correctness of their code at the method or function level. Unit tests are designed to test individual units of code in isolation to ensure they work as expected.
-
-Let's break down the code:
+JUnit test class named ExampleUnitTest. JUnit is a popular testing framework for Java 
+that allows developers to write and execute unit tests to verify the correctness of their code at the method or function level. 
+Unit tests are designed to test individual units of code in isolation to ensure they work as expected.
 
 The package and import statements include the necessary JUnit and testing-related classes.
-
-The class contains a single test method named addition_isCorrect(), annotated with @Test. This method will be executed when running the unit test.
+The class contains a single test method named addition_isCorrect(), annotated with @Test. 
+This method will be executed when running the unit test.
 
 Inside the addition_isCorrect() method:
-
 A simple addition operation is performed: 2 + 2.
-The result of the addition (4) is compared to the expected value (also 4) using assertEquals(). If the two values match, the test passes; otherwise, it fails.
-The assertEquals() method is a static method from the org.junit.Assert class. It is used to compare two values and check whether they are equal. If the values are not equal, the test will fail, and an assertion error will be thrown, indicating that the code being tested doesn't behave as expected.
+The result of the addition (4) is compared to the expected value (also 4) using assertEquals(). 
+If the two values match, the test passes; otherwise, it fails.
+The assertEquals() method is a static method from the org.junit.Assert class. 
+It is used to compare two values and check whether they are equal. 
+If the values are not equal, the test will fail, and an assertion error will be thrown, 
+indicating that the code being tested doesn't behave as expected.
 
-In summary, this unit test class contains a single test method that checks whether the addition operation 2 + 2 results in the expected value of 4. If the test passes, it means the addition operation is correct, and the code behaves as expected. This test is a basic example of how to write a JUnit unit test to verify the correctness of a simple mathematical operation.
 */
 
 package com.stmn.pdfmerger;
