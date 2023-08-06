@@ -1,34 +1,35 @@
 /*
- Android application written in Java that allows users to merge multiple PDF files into a single PDF file. Let's go through the code step by step to understand its functionality:
-
+Android application written in Java that allows users to merge multiple PDF files into a single PDF file. 
 The code starts with package and import statements, which bring in necessary Android and third-party libraries for PDF manipulation.
-
 The MainActivity class extends AppCompatActivity, which is the base class for activities that use the support library action bar features.
 
-It declares some member variables:
-
+Member variables:
 private static final int REQUEST_PICK_PDF_FILES: A constant integer used as a request code when selecting PDF files from the file picker.
 private Button selectPDF: A button used to trigger the PDF selection process.
 private Button mergePDF: A button used to initiate the merging process.
 private List<Uri> mSelectedPdfs: A list to store the URIs (Uniform Resource Identifiers) of the selected PDF files.
 In the onCreate method, the layout is set using setContentView(R.layout.activity_main).
 
-Two click listeners are assigned to the selectPDF and mergePDF buttons. The selectPDF button's listener opens the file picker to allow the user to select one or more PDF files, and the mergePDF button's listener initiates the merging process.
+Two click listeners are assigned to the selectPDF and mergePDF buttons. 
+The selectPDF button's listener opens the file picker to allow the user to select one or more PDF files, 
+and the mergePDF button's listener initiates the merging process.
 
-When the user selects PDF files in the file picker, the onActivityResult method is called. The selected URIs are stored in the mSelectedPdfs list, and a toast is displayed to indicate the number of selected PDF files.
-
+When the user selects PDF files in the file picker, the onActivityResult method is called. 
+The selected URIs are stored in the mSelectedPdfs list, and a toast is displayed to indicate the number of selected PDF files.
 When the user clicks the mergePDF button, the onClick method inside the click listener is executed.
 
 In the mergePDF method:
-
 It first checks if any PDF files are selected. If not, it displays a toast message prompting the user to select at least one file.
 Then, it creates a new PDF file with a unique filename in the "Documents" directory using the current timestamp as part of the filename.
 It opens an output stream to write the merged PDF content.
-A new Document and PdfCopy objects are created from the iTextPDF library. These objects will be used to handle the merging process.
-The selected PDF files' URIs are looped through, and each PDF file is opened using PdfReader. The content of each PDF file is copied to the new PdfCopy object.
+A new Document and PdfCopy objects are created from the iTextPDF library. 
+These objects will be used to handle the merging process.
+The selected PDF files' URIs are looped through, and each PDF file is opened using PdfReader. 
+The content of each PDF file is copied to the new PdfCopy object.
 After copying all PDFs, the document is closed, and the output stream is closed.
 A toast message is displayed indicating the successful merge.
-Finally, an Intent is created to view the merged PDF using a PDF viewer app. The FileProvider is used to create a content URI for the merged PDF file, granting read permissions to the viewer app.
+Finally, an Intent is created to view the merged PDF using a PDF viewer app. 
+The FileProvider is used to create a content URI for the merged PDF file, granting read permissions to the viewer app.
 If an exception occurs during the merging process, it is caught and printed to the console (e.g., logcat) for debugging purposes.
 */
 
