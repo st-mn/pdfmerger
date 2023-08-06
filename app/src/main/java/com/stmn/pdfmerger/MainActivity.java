@@ -57,15 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 try{
 
                     String filename = System.currentTimeMillis() + "_merged.pdf";
-
                     File mergedPdfFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),filename);
-
                     FileOutputStream outputStream = new FileOutputStream(mergedPdfFile);
-
                     Document document = new Document();
-
                     PdfCopy copy = new PdfCopy(document,outputStream);
-
                     document.open();
 
                     for(Uri pdfUri: mSelectedPdfs){
@@ -77,10 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     document.close();
                     outputStream.close();
                     Toast.makeText(MainActivity.this,"PDF files merged successfully.", Toast.LENGTH_SHORT).show();
-
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-
-                  // Uri fileUri = FileProvider.getUriForFile(MainActivity.this, BuildConfig.APPLICATION_ID + ".provider", mergedPdfFile);
                     Uri fileUri = FileProvider.getUriForFile(MainActivity.this,"com.stmn.pdfmerger.provider", mergedPdfFile);
 
                     intent.setDataAndType(fileUri, "application/pdf");
@@ -89,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }catch(Exception e){
                     e.printStackTrace();
-                   // Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                   
                 }
             }
         });
