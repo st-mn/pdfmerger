@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         mergePDF = findViewById(R.id.merge_pdf_button);
 
         selectPDF.setOnClickListener(new View.OnClickListener() {
-            @Override
+            @Override //Open document dialog to select pdf files
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent.setType("application/pdf");
@@ -91,26 +91,28 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 try{
-
+                    //Create new pdf file into which we will merge
                     String filename = System.currentTimeMillis() + "_merged.pdf";
                     File mergedPdfFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),filename);
                     FileOutputStream outputStream = new FileOutputStream(mergedPdfFile);
                     Document document = new Document();
                     PdfCopy copy = new PdfCopy(document,outputStream);
                     document.open();
-
+                    
+                    //Add all files in new merged pdf file
                     for(Uri pdfUri: mSelectedPdfs){
                         PdfReader reader = new PdfReader(getContentResolver().openInputStream(pdfUri));
                         copy.addDocument(reader);
                         reader.close();
                     }
-
+                    //Close and save new merged pdf file
                     document.close();
                     outputStream.close();
                     Toast.makeText(MainActivity.this,"PDF files merged successfully.", Toast.LENGTH_SHORT).show();
+                    
+                    //Open and display new merged pdf file
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     Uri fileUri = FileProvider.getUriForFile(MainActivity.this,"com.stmn.pdfmerger.provider", mergedPdfFile);
-
                     intent.setDataAndType(fileUri, "application/pdf");
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     startActivity(intent);
@@ -124,10 +126,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
+    @Override 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        //Display message with number of selected files
+        //TODO: expand to allow reordering of files
         if(requestCode == REQUEST_PICK_PDF_FILES && resultCode == RESULT_OK){
             mSelectedPdfs.clear();
             if(data.getData() != null){
